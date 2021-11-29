@@ -7,7 +7,7 @@ import express from "express";
 import fs, { writeSync } from "fs";
 import bodyParser, { json, urlencoded } from "body-parser";
 import { response, response_short } from "./types/JSON_resp";
-import { update_file } from "./methods";
+import myMap, { update_file, update_Map, } from "./methods";
 
 /**
  *  Encoding of JSON file 
@@ -17,11 +17,7 @@ const myFile = fs.readFileSync("books.json");
 export let myFile_enc: response[] = JSON.parse(myFile.toString());
 
 
-/**
- * Map ID in book.JSON file
-*/
-let myMap = new Map<String, any>();
-myFile_enc.forEach((responses: response) => myMap.set(responses.id , responses))
+
 
 
 /**
@@ -37,13 +33,14 @@ function createServer() {
     http.createServer(app).listen(3000, () =>{
         console.log('Server ON, port :3000');
     })
-
-
+    update_Map();
+    console.log(myMap)
     /**
      *  .post() declaration
      */
     app.post('/api/library/book/:id/info',(req, res) =>
     {
+        update_Map()
         const id = req.params['id'];
         if (myMap.has(id))
         {
@@ -61,6 +58,7 @@ function createServer() {
     */
     app.get('/api/library/book/:id/info',(req, res) => 
     {
+        update_Map();
         const id = req.params['id'];
         if (myMap.has(id))
         {
@@ -86,6 +84,7 @@ function createServer() {
     */
     app.put('/api/library/book/:id/add',(req, res) => 
     {
+        update_Map();
         const id = req.params['id'];
         if (myMap.has(id))
         {
@@ -117,6 +116,7 @@ function createServer() {
     */
     app.delete('/api/library/book/:id/delete', (req,res) =>
     {
+        update_Map();
         const id = req.params['id'];
         if (myMap.has(id))
         {
