@@ -2,7 +2,7 @@
  * Type responses for simple declaration of output data
  */
 
- export type response = {
+ export type book_response = {
     id: String,
     name: String,
     author: String[],

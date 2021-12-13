@@ -13,7 +13,6 @@
 		"publish_country": "Slovakia",
 		"num_of_pages": 150
 	},
-
 	{
 		"id": "456123",
 		"name": "Kniha2",
@@ -69,5 +68,19 @@
 		"publisher": "Sto",
 		"publish_country": "Austria",
 		"num_of_pages": 154
+	},
+	{
+		"id": "18326513",
+		"name": "Biology",
+		"author": [
+			"Marek S"
+		],
+		"genre": [
+			"Zaner"
+		],
+		"publish_year": 2000,
+		"publisher": "Martin",
+		"publish_country": "SVL",
+		"num_of_pages": 10
 	}
 ]
